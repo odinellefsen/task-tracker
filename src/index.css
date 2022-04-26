@@ -1,13 +1,122 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: 'Source Sans Pro', 'sans-serif';
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-weight: 700;
+  user-select: none;
+}
+
+.container {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid #cccccc;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.text {
+  background: #f4f4f4;
+  margin: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  user-select: none;
+}
+
+.text h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-form {
+  margin-bottom: 40px;
+}
+
+.form-control {
+  margin: 20px 0;
+}
+
+.form-control label {
+  display: block;
+}
+
+.input-title {
+  width: 100%;
+  height: 40px;
+  margin: 5px;
+  padding: 3px 7px;
+  font-size: 17px;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-family: 'Source Sans Pro', 'sans-serif';
+}
+
+.input-text {
+  width: 100%;
+  height: 100px;
+  margin: 5px;
+  padding: 3px 7px;
+  font-size: 17px;
+  border-radius: 5px;
+  border: 2px solid black;
+  font-family: 'Source Sans Pro', 'sans-serif';
+  resize: vertical;
+}
+
+.text-p {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+footer {
+  margin-top: 30px;
+  text-align: center;
 }
