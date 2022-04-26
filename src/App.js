@@ -2,42 +2,56 @@ import Header from "./components/Header";
 import Texts from "./components/Texts";
 import Footer from "./components/Footer";
 import AddText from "./components/AddText";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import About from "./components/About";
 
 function App() {
   const [showAddText, setShowAddText] = useState(false)
 
-  const [texts, setTexts] = useState([
-    {
-      id: 1,
-      title: 'Ommu bollar uppskrift',
-      text: '500g mjøl, 1 ger, 1 súpuskeið sukur, 1 teskeið salt, 50g flótandi margarin, 2dl mjólk, 1dl kókandi heitt vatn. Lata deiggið heva í 1 tíma. Forma bollarnar og so skula teir heva í 30min. 225celsius formvarmaðan ovn í 12 min.',
-    },
-    {
-      id: 2,
-      title: 'You are the champ',
-      text: 'the title is da tru tru',
-    },
-    {
-      id: 3,
-      title: 'Lambo go brr brr',
-      text: 'lambos are just great man like omg like one of the best lambos has to be the lamborghini hurancan sto that backpart of it is just hella insane bro',
-    }  
-  ])
+  const [texts, setTexts] = useState([])
+
+
+  useEffect(() => {
+    const getTexts = async () => {
+      const textsFromServer = await fetchTexts()
+      setTexts(textsFromServer)
+    }
+
+    getTexts()
+  }, [])
+
+  // Fetch Texts
+  const fetchTexts = async () => {
+    const res = await fetch('http://localhost:5000/texts')
+    const data = await res.json()
+
+    return data
+  }
 
 
   // Add Text
-  const addText = (text) => {
-    const id = Math.floor(Math.random() * 10000) + 1
-    const newText = { id, ...text }
-    setTexts([...texts, newText])
+  const addText = async (text) => {
+    const res = await fetch('http://localhost:5000/texts', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(text)
+    })
+
+    const data = await res.json()
+
+    setTexts([...texts, data])
   }
 
 
   // Delete Text
-  const deleteText = (id) => {
+  const deleteText = async (id) => {
+    await fetch(`http://localhost:5000/texts/${id}`, {
+      method: 'DELETE',
+    })
+
     setTexts(texts.filter((text) => text.id !== id))
   }
 
